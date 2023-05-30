@@ -1,4 +1,4 @@
-package br.ifsp.edu.lp1p2.lp1p2;
+package br.ifsp.edu.lp1p2;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
