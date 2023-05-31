@@ -6,8 +6,8 @@
 2. [DATABASE SCHEMA](#database-schema)
 3. [TODO](#todo)
    1. [Entidades](#entidades)
-   2. [Funcionalidades](#funcionalidades:)
-   3. [Enuns](#enuns-(opcional-ser-um-enum):)
+   2. [Funcionalidades](#funcionalidades)
+   3. [Enuns](#enuns-opcional-ser-um-enum)
 4. [STATE DIAGRAM](#state-diagram)
 
 
@@ -312,7 +312,7 @@ CREATE TABLE Tecido (
 
 
 
-### Funcionalidades: 
+### Funcionalidades
 
 - [ ] Criar conta para o usuário. 
 
@@ -372,7 +372,7 @@ CREATE TABLE Tecido (
 
 
 
-### Enuns (opcional ser um enum): 
+### Enuns opcional ser Enum
 
 - tipoPagamento (Pedido) 
 
