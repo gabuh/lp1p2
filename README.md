@@ -507,26 +507,35 @@ stateDiagram-v2
 
 
 
-<a href="#top" class="go-top-button">Go to Top</a>
 
-<style>
-.go-top-button {
-  display: none;
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 80px;
-  height: 40px;
-  line-height: 40px;
-  text-align: center;
-  background-color: #333;
-  color: #fff;
-  font-size: 14px;
-  text-decoration: none;
-}
-.go-top-button:hover {
-  background-color: #555;
-}
-</style>
+
+<svg fill="none" viewBox="0 0 400 400" width="400" height="400" xmlns="http://www.w3.org/2000/svg">
+    <foreignObject width="100%" height="100%">
+        <div xmlns="http://www.w3.org/1999/xhtml">
+		<style>
+			.go-top-button {
+			  display: none;
+			  position: fixed;
+			  bottom: 20px;
+			  right: 20px;
+			  width: 80px;
+			  height: 40px;
+			  line-height: 40px;
+			  text-align: center;
+			  background-color: #333;
+			  color: #fff;
+			  font-size: 14px;
+			  text-decoration: none;
+			}
+			.go-top-button:hover {
+			  background-color: #555;
+			}
+		</style>
+            <a href="#top" class="go-top-button">Go to Top</a>
+        </div>
+    </foreignObject>
+</svg>
+
+
 
 
