@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
+             version="3.0">
+  <persistence-unit name="default">
+
+    <class>br.ifsp.edu.lp1p2.model.AdicionalEntity</class>
+    <class>br.ifsp.edu.lp1p2.model.ClienteEntity</class>
+    <class>br.ifsp.edu.lp1p2.model.ItempedidoEntity</class>
+    <class>br.ifsp.edu.lp1p2.model.MedidaEntity</class>
+    <class>br.ifsp.edu.lp1p2.model.ModeloEntity</class>
+    <class>br.ifsp.edu.lp1p2.model.OrcamentoEntity</class>
+    <class>br.ifsp.edu.lp1p2.model.PecaEntity</class>
+    <class>br.ifsp.edu.lp1p2.model.PedidoEntity</class>
+    <class>br.ifsp.edu.lp1p2.model.TecidoEntity</class>
+    <class>br.ifsp.edu.lp1p2.model.UsuarioEntity</class>
+    <properties>
+      <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/lp1p2"/>
+      <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
+      <property name="show_sql" value="true"/>
+      <property name="hibernate.connection.username" value="newone"/>
+    </properties>
+  </persistence-unit>
+</persistence>
