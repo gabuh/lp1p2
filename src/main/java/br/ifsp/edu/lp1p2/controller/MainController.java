@@ -20,6 +20,6 @@ public class MainController {
     public void onLoginButtonClick(ActionEvent actionEvent) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         ItempedidoEntity itempedido =entityManager.find(ItempedidoEntity.class, 1);
-        welcomeText.setText(itempedido.getAdicionalEntityList().get(0).getNome());
+        welcomeText.setText(itempedido.getAdicionais().get(0).getNome());
     }
 }

@@ -2,10 +2,11 @@ package br.ifsp.edu.lp1p2.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "peca", schema = "lp1p2", catalog = "")
+@Table(name = "peca", schema = "lp1p2")
 public class PecaEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -17,9 +18,14 @@ public class PecaEntity {
     @Basic
     @Column(name = "precoBase")
     private Double precoBase;
-    @Basic
-    @Column(name = "modelo_id")
-    private Long modeloId;
+
+
+    @ManyToOne
+    @JoinColumn(name = "modelo_id")
+    private ModeloEntity modeloId;
+
+    @OneToMany(mappedBy = "pecaId", cascade = CascadeType.ALL)
+    private List<MedidaEntity> medidas;
 
     public long getId() {
         return id;
@@ -45,13 +51,6 @@ public class PecaEntity {
         this.precoBase = precoBase;
     }
 
-    public Long getModeloId() {
-        return modeloId;
-    }
-
-    public void setModeloId(Long modeloId) {
-        this.modeloId = modeloId;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -64,5 +63,13 @@ public class PecaEntity {
     @Override
     public int hashCode() {
         return Objects.hash(id, nome, precoBase, modeloId);
+    }
+
+    public List<MedidaEntity> getMedidas() {
+        return medidas;
+    }
+
+    public void setMedidas(List<MedidaEntity> medidas) {
+        this.medidas = medidas;
     }
 }

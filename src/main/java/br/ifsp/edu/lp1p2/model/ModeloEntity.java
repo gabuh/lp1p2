@@ -2,6 +2,7 @@ package br.ifsp.edu.lp1p2.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -17,6 +18,9 @@ public class ModeloEntity {
     @Basic
     @Column(name = "multiplicador")
     private Double multiplicador;
+
+    @OneToMany(mappedBy = "modeloId", cascade = CascadeType.ALL)
+    private List<PecaEntity> pecas;
 
     public long getId() {
         return id;
@@ -53,5 +57,13 @@ public class ModeloEntity {
     @Override
     public int hashCode() {
         return Objects.hash(id, nome, multiplicador);
+    }
+
+    public List<PecaEntity> getPecas() {
+        return pecas;
+    }
+
+    public void setPecas(List<PecaEntity> pecas) {
+        this.pecas = pecas;
     }
 }

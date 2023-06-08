@@ -4,10 +4,11 @@ import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "orcamento", schema = "lp1p2", catalog = "")
+@Table(name = "orcamento", schema = "lp1p2")
 public class OrcamentoEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -28,6 +29,9 @@ public class OrcamentoEntity {
     @Basic
     @Column(name = "cliente_id")
     private Long clienteId;
+
+    @OneToMany(mappedBy = "orcamentoId", cascade = CascadeType.ALL)
+    private List<ItempedidoEntity> itensPedidos;
 
     public long getId() {
         return id;
@@ -88,5 +92,13 @@ public class OrcamentoEntity {
     @Override
     public int hashCode() {
         return Objects.hash(id, dataCriacao, valorTotal, observacoes, usuarioId, clienteId);
+    }
+
+    public List<ItempedidoEntity> getItensPedidos() {
+        return itensPedidos;
+    }
+
+    public void setItensPedidos(List<ItempedidoEntity> itensPedidos) {
+        this.itensPedidos = itensPedidos;
     }
 }

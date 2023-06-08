@@ -31,9 +31,9 @@ public class ItempedidoEntity {
     @Basic
     @Column(name = "tecido_id")
     private Long tecidoId;
-    @Basic
-    @Column(name = "orcamento_id")
-    private Long orcamentoId;
+    @ManyToOne
+    @JoinColumn(name = "orcamento_id")
+    private OrcamentoEntity orcamentoId;
 
     @OneToMany(mappedBy = "itemPedidoId", cascade = CascadeType.ALL)
     private List<AdicionalEntity> adicionais;
@@ -94,14 +94,6 @@ public class ItempedidoEntity {
         this.tecidoId = tecidoId;
     }
 
-    public Long getOrcamentoId() {
-        return orcamentoId;
-    }
-
-    public void setOrcamentoId(Long orcamentoId) {
-        this.orcamentoId = orcamentoId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -115,11 +107,11 @@ public class ItempedidoEntity {
         return Objects.hash(id, tamanho, cor, valorItem, pecaId, modeloId, tecidoId, orcamentoId);
     }
 
-    public List<AdicionalEntity> getAdicionalEntityList() {
+    public List<AdicionalEntity> getAdicionais() {
         return adicionais;
     }
 
-    public void setAdicionalEntityList(List<AdicionalEntity> adicionalEntityList) {
+    public void setAdicionais(List<AdicionalEntity> adicionalEntityList) {
         this.adicionais = adicionalEntityList;
     }
 }

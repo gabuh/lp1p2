@@ -2,6 +2,7 @@ package br.ifsp.edu.lp1p2.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -20,6 +21,9 @@ public class ClienteEntity {
     @Basic
     @Column(name = "email")
     private String email;
+
+    @OneToMany(mappedBy = "clienteId", cascade = CascadeType.ALL)
+    private List<MedidaEntity> medidas;
 
     public long getId() {
         return id;
@@ -64,5 +68,13 @@ public class ClienteEntity {
     @Override
     public int hashCode() {
         return Objects.hash(id, nome, telefone, email);
+    }
+
+    public List<MedidaEntity> getMedidas() {
+        return medidas;
+    }
+
+    public void setMedidas(List<MedidaEntity> medidas) {
+        this.medidas = medidas;
     }
 }
