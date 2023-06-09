@@ -122,34 +122,34 @@ Medida --o Peca
 
 ```sql
 CREATE TABLE Tecido (
-    id BIGINT PRIMARY KEY,
+    id BIGINT PRIMARY KEY AUTO_INCREMENT ,
     nome VARCHAR(255),
     preco DECIMAL(18,2)
 );
 
 
 CREATE TABLE Modelo (
-    id BIGINT PRIMARY KEY,
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(255),
     multiplicador DOUBLE
 );
 
 CREATE TABLE Cliente (
-    id BIGINT PRIMARY KEY,
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(255),
     telefone VARCHAR(255),
     email VARCHAR(255)
 );
 
 CREATE TABLE Usuario (
-    id BIGINT PRIMARY KEY,
-    nomeUsuario VARCHAR(255),
-    senhaUsuario VARCHAR(255),
-    emailUsuario VARCHAR(255)
+     id BIGINT PRIMARY KEY AUTO_INCREMENT,
+     nomeUsuario VARCHAR(255),
+     senhaUsuario VARCHAR(255),
+     emailUsuario VARCHAR(255)
 );
 
 CREATE TABLE Peca (
-    id BIGINT PRIMARY KEY,
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(255),
     precoBase DOUBLE,
     modelo_id BIGINT,
@@ -157,7 +157,7 @@ CREATE TABLE Peca (
 );
 
 CREATE TABLE Medida (
-    id BIGINT PRIMARY KEY,
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(255),
     tamanho DOUBLE,
     peca_id BIGINT,
@@ -167,18 +167,18 @@ CREATE TABLE Medida (
 );
 
 CREATE TABLE Orcamento (
-    id BIGINT PRIMARY KEY,
-    dataCriacao TIMESTAMP,
-    valorTotal DECIMAL(18,2),
-    observacoes VARCHAR(255),
-    usuario_id BIGINT,
-    cliente_id BIGINT,
-    FOREIGN KEY (usuario_id) REFERENCES Usuario(id),
-    FOREIGN KEY (cliente_id) REFERENCES Cliente(id)
+   id BIGINT PRIMARY KEY AUTO_INCREMENT,
+   dataCriacao TIMESTAMP,
+   valorTotal DECIMAL(18,2),
+   observacoes VARCHAR(255),
+   usuario_id BIGINT,
+   cliente_id BIGINT,
+   FOREIGN KEY (usuario_id) REFERENCES Usuario(id),
+   FOREIGN KEY (cliente_id) REFERENCES Cliente(id)
 );
 
 CREATE TABLE Pedido (
-    id BIGINT PRIMARY KEY,
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
     dataEntrega TIMESTAMP,
     pago BOOLEAN,
     dataPagamento TIMESTAMP,
@@ -189,7 +189,7 @@ CREATE TABLE Pedido (
 );
 
 CREATE TABLE ItemPedido (
-    id BIGINT PRIMARY KEY,
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
     tamanho VARCHAR(255),
     cor VARCHAR(255),
     valorItem DECIMAL(18,2),
@@ -204,11 +204,11 @@ CREATE TABLE ItemPedido (
 );
 
 CREATE TABLE Adicional (
-    id BIGINT PRIMARY KEY,
-    nome VARCHAR(255),
-    multiplicador DOUBLE,
-    itemPedido_id BIGINT,
-    FOREIGN KEY (itemPedido_id) REFERENCES ItemPedido(id)
+   id BIGINT PRIMARY KEY AUTO_INCREMENT,
+   nome VARCHAR(255),
+   multiplicador DOUBLE,
+   itemPedido_id BIGINT,
+   FOREIGN KEY (itemPedido_id) REFERENCES ItemPedido(id)
 );
 
 ```
@@ -220,7 +220,7 @@ erDiagram
 
 
 Modelo {
-	BIGINT id PK
+    BIGINT id PK
     VARCHAR(255) nome
     DOUBLE multiplicador
 }
@@ -329,15 +329,15 @@ Orcamento |o--o| Pedido : has
 
 - Usuario 
 
-    - [ ] A classe Usuario vai armazenar dados do usuário do sistema. 
+    - [x] A classe Usuario vai armazenar dados do usuário do sistema. 
 
 
 
 - Orcamento 
 
-    - [ ] A classe Orcamento vai armazenar as informações de um orçamento de um pedido do ateliê. 
+    - [x] A classe Orcamento vai armazenar as informações de um orçamento de um pedido do ateliê. 
 
-    - [ ] O orçamento tem um usuário e um cliente vinculados e uma lista com todos os itens do pedido. 
+    - [x] O orçamento tem um usuário e um cliente vinculados e uma lista com todos os itens do pedido. 
 
     - [ ] O valorTotal é calculado automaticamente baseados no valor de cada item do pedido.
 
@@ -345,7 +345,7 @@ Orcamento |o--o| Pedido : has
 
 - Pedido 
 
-    - [ ] A classe Pedido herda de Orcamento e armazena todas as informações de um pedido do ateliê. 
+    - [x] A classe Pedido herda de Orcamento e armazena todas as informações de um pedido do ateliê. 
 
     - [ ] Os atributos obrigatórios de um pedido além dos atributos do orçamento é a dataEntrega e a situação. 
 
@@ -403,7 +403,7 @@ Orcamento |o--o| Pedido : has
 
 ### Funcionalidades
 
-- [ ] Criar conta para o usuário. 
+- [x] Criar conta para o usuário. 
 
 - [ ] Recuperar senha do usuário. 
 
