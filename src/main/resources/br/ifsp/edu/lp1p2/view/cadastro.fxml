@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ifsp.edu.lp1p2.controller.CadastroController">
+   <children>
+      <BorderPane>
+         <center>
+            <VBox alignment="CENTER" prefHeight="400.0" prefWidth="340.0">
+               <children>
+                  <Label prefHeight="17.0" prefWidth="394.0" text="Nome:" VBox.vgrow="ALWAYS" />
+                  <TextField fx:id="tfName" promptText="GABRIEL NOGUEIRA" />
+                  <Label prefHeight="17.0" prefWidth="371.0" text="Email:" VBox.vgrow="ALWAYS" />
+                  <TextField fx:id="tfEmail" promptText="GABRIEL@EMAIL.COM" />
+                  <Label prefHeight="17.0" prefWidth="371.0" text="Senha:" />
+                  <PasswordField fx:id="tfPassword" promptText="*********" />
+                  <Label prefHeight="17.0" prefWidth="381.0" text="Repetir Senha:" />
+                  <PasswordField fx:id="tfRetryPassword" promptText="*********" />
+                  <Label fx:id="lbWarning" textFill="#e11717" wrapText="true" />
+                  <Button mnemonicParsing="false" onAction="#onClickRegisterButton" prefHeight="25.0" prefWidth="399.0" text="Cadastro" textAlignment="CENTER">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </VBox>
+         </center>
+         <top>
+            <Label text="Cadastro" BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </top>
+      </BorderPane>
+   </children>
+</HBox>

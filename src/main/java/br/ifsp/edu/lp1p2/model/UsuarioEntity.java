@@ -5,7 +5,8 @@ import jakarta.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "usuario", schema = "lp1p2", catalog = "")
+@NamedNativeQuery(name="selectByEmail", query="SELECT u.* FROM usuario AS u WHERE u.emailUsuario LIKE ?", resultClass=UsuarioEntity.class)
+@Table(name = "usuario", schema = "lp1p2")
 public class UsuarioEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id

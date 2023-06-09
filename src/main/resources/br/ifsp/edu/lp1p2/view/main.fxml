@@ -1,24 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Hyperlink?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
-<?import javafx.scene.shape.Arc?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
 
-
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ifsp.edu.lp1p2.controller.MainController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ifsp.edu.lp1p2.controller.MainController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -30,16 +18,16 @@
       <VBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
          <children>
             <Label text="Email" />
-            <TextField accessibleText="Email field" promptText="Email@address.com" />
-            <Label fx:id="welcomeText" contentDisplay="CENTER" text="Password" />
-            <PasswordField promptText="*****************" />
-            <Separator prefHeight="0.0" prefWidth="300.0" />
+            <TextField fx:id="tfEmail" accessibleText="Email field" promptText="Email@address.com" />
+            <Label contentDisplay="CENTER" text="Password" />
+            <PasswordField fx:id="tfPassword" promptText="*****************" />
+            <Label fx:id="lbWaning" alignment="CENTER" prefHeight="17.0" prefWidth="226.0" textFill="#e11a1a" />
             <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onLoginButtonClick" text="Login" />
             <HBox alignment="TOP_CENTER" prefHeight="21.0" prefWidth="220.0">
                <children>
                   <Hyperlink text="Support US" />
                   <Separator maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" opacity="0.0" HBox.hgrow="ALWAYS" />
-                  <Hyperlink alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="Create Account" />
+                  <Hyperlink alignment="CENTER_RIGHT" contentDisplay="RIGHT" onAction="#onCreateAccountClick" text="Create Account" />
                </children>
             </HBox>
          </children>
