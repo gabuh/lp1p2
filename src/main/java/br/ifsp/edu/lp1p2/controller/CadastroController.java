@@ -2,12 +2,16 @@ package br.ifsp.edu.lp1p2.controller;
 
 import br.ifsp.edu.lp1p2.dao.impl.UsuarioDaoImpl;
 import br.ifsp.edu.lp1p2.model.UsuarioEntity;
+import br.ifsp.edu.lp1p2.util.Validator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+
 
 public class CadastroController {
 
@@ -26,27 +30,32 @@ public class CadastroController {
         var usuario = validate();
         if (usuario == null)
             new Alert(Alert.AlertType.WARNING,"Por favor, Verifique os campos").show();
-        else
+        else {
             new UsuarioDaoImpl().create(usuario);
+            new Alert(Alert.AlertType.INFORMATION,"Account Successfully Created").show();
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.close();
+        }
     }
 
     private UsuarioEntity validate(){
         if(!tfName.getText().isEmpty() && !tfEmail.getText().isEmpty() && !tfPassword.getText().isEmpty() && !tfRetryPassword.getText().isEmpty()){
             if (!tfRetryPassword.getText().equals(tfPassword.getText())){
-                lbWarning.setText("Senha incopativel"); return null;
+                lbWarning.setText("Senha incompatível"); return null;
             }
-            String nameRegex = "^[a-zA-Z ]{6,18}+$";
-            if (!tfName.getText().matches(nameRegex)){
-                lbWarning.setText("Nome Invalido deve ter entre 6 a 18 digitos não numéricos"); return null;
-            }
-            String emailRegex = "^((?!\\.)[\\w-_.]*[^.])(@\\w+)(\\.\\w+(\\.\\w+)?[^.\\W])$";
-            if (!tfEmail.getText().matches(emailRegex)) {
-                lbWarning.setText(tfEmail.getText()+" é invalida]"); return null;
-            }
-            String passwordRegex = "^(?=.*\\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\\w\\d\\s:])([^\\s]){8,16}$";
-            if (!tfPassword.getText().matches(passwordRegex)){
-                lbWarning.setText("A senha deve conter 1 número (0-9), 1 letra maiúscula, 1 letra minúscula, 1 número não alfanumérico, 8-16 caracteres sem espaço"); return null;
-            }
+            String msg = Validator.nameValidator(tfName.getText());
+            if (msg!=null) { lbWarning.setText(msg); return null; }
+
+            msg = Validator.emailValidator(tfEmail.getText());
+            if (msg!=null) { lbWarning.setText(msg); return null; }
+
+            var user = new UsuarioDaoImpl().getUsuarioByEmail(tfEmail.getText());
+            if (user!=null)
+                if (tfEmail.getText().equals(user.getEmailUsuario())){ lbWarning.setText("Usuario ja existente, Verifique os dados ou recupere sua conta"); return null; }
+
+            msg = Validator.passwordValidator(tfPassword.getText());
+            if (msg!=null){ lbWarning.setText(msg); return null; }
+
             UsuarioEntity usuario = new UsuarioEntity();
             usuario.setEmailUsuario(tfEmail.getText());
             usuario.setSenhaUsuario(tfPassword.getText());
@@ -55,5 +64,13 @@ public class CadastroController {
         }
         return null;
     }
+
+    public void setTfPassword(String name){
+        tfPassword.setText(name);
+    }
+    public void setTfEmail(String email){
+        tfEmail.setText(email);
+    }
+
 
 }

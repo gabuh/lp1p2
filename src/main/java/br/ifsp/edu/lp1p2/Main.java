@@ -16,7 +16,7 @@ public class Main extends Application {
     }
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("view/cadastro.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("view/mainview.fxml"));
         Screen screen = Screen.getPrimary();
         Scene scene = new Scene(fxmlLoader.load(),screen.getBounds().getWidth()-100 , screen.getBounds().getHeight()-100);
         stage.setTitle("Programming Language - Project 2 !");

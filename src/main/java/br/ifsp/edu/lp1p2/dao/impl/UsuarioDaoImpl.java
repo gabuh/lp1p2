@@ -23,10 +23,12 @@ public class UsuarioDaoImpl implements UsuarioDao {
 
     @Override
     public void create(UsuarioEntity usuario) {
+//        var user = getUsuarioByEmail(usuario.getEmailUsuario());
+//        if (user!=null)
+//            if (usuario.getEmailUsuario().equals(user.getEmailUsuario())){ return; }
         EntityTransaction transaction = JpaFactoryConnection.getEntityManager().getTransaction();
         try{
             transaction.begin();
-
             JpaFactoryConnection.getEntityManager().persist(usuario);
             transaction.commit();
         } finally {
