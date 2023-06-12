@@ -3,6 +3,7 @@ package br.ifsp.edu.lp1p2.dao.impl;
 import br.ifsp.edu.lp1p2.config.JpaFactoryConnection;
 import br.ifsp.edu.lp1p2.dao.TecidoDao;
 import br.ifsp.edu.lp1p2.model.TecidoEntity;
+import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Query;
 import javafx.collections.ObservableList;
 
@@ -13,7 +14,16 @@ public class TecidoDaoImpl implements TecidoDao {
 
     @Override
     public void create(TecidoEntity tecido) {
-
+        EntityTransaction transaction = JpaFactoryConnection.getEntityManager().getTransaction();
+        try{
+            transaction.begin();
+            JpaFactoryConnection.getEntityManager().persist(tecido);
+            transaction.commit();
+        } finally {
+            if (transaction.isActive()){
+                transaction.rollback();
+            }
+        }
     }
 
     @Override
@@ -29,6 +39,15 @@ public class TecidoDaoImpl implements TecidoDao {
 
     @Override
     public void update(TecidoEntity tecido) {
-
+        EntityTransaction transaction = JpaFactoryConnection.getEntityManager().getTransaction();
+        try{
+            transaction.begin();
+            JpaFactoryConnection.getEntityManager().persist(tecido);
+            transaction.commit();
+        } finally {
+            if (transaction.isActive()){
+                transaction.rollback();
+            }
+        }
     }
 }

@@ -12,14 +12,23 @@ import java.util.List;
 public class UsuarioDaoImpl implements UsuarioDao {
 
     @Override
-    public UsuarioEntity getUsuarioByEmail(String email) {
+    public UsuarioEntity getUsuarioByEmailAndPassword(String email,String password) {
         Query query = JpaFactoryConnection.getEntityManager().createNamedQuery("selectByEmail", UsuarioEntity.class);
         List<UsuarioEntity> result = query.setParameter(1,email).getResultList();
         if(!result.isEmpty()){
+            result.get(0).setSenhaUsuario("-");
             return result.get(0);
         }
      return null;
     }
+
+    @Override
+    public boolean checkUserByEmail(String email) {
+        Query query = JpaFactoryConnection.getEntityManager().createNamedQuery("selectByEmail", UsuarioEntity.class);
+        List<UsuarioEntity> result = query.setParameter(1,email).getResultList();
+        return !result.isEmpty();
+    }
+
 
     @Override
     public void create(UsuarioEntity usuario) {
@@ -37,5 +46,14 @@ public class UsuarioDaoImpl implements UsuarioDao {
             }
         }
 
+    }
+
+    @Override
+    public boolean checkUserByEmailAndPassword(String email, String password) {
+        Query query = JpaFactoryConnection.getEntityManager().createQuery("SELECT u FROM UsuarioEntity AS u WHERE u.emailUsuario LIKE ?1 AND u.senhaUsuario LIKE ?2", UsuarioEntity.class);
+        query.setParameter(1,email);
+        query.setParameter(2,password);
+        List<UsuarioEntity> result = query.getResultList();
+        return !result.isEmpty();
     }
 }

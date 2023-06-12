@@ -49,9 +49,8 @@ public class CadastroController {
             msg = Validator.emailValidator(tfEmail.getText());
             if (msg!=null) { lbWarning.setText(msg); return null; }
 
-            var user = new UsuarioDaoImpl().getUsuarioByEmail(tfEmail.getText());
-            if (user!=null)
-                if (tfEmail.getText().equals(user.getEmailUsuario())){ lbWarning.setText("Usuario ja existente, Verifique os dados ou recupere sua conta"); return null; }
+            var user = new UsuarioDaoImpl().checkUserByEmail(tfEmail.getText());
+            if (user) { lbWarning.setText("Usuario ja existente, Verifique os dados ou recupere sua conta"); return null; }
 
             msg = Validator.passwordValidator(tfPassword.getText());
             if (msg!=null){ lbWarning.setText(msg); return null; }

@@ -19,6 +19,7 @@ public class TecidoEntity {
     @Column(name = "preco")
     private BigDecimal preco;
 
+
     public long getId() {
         return id;
     }

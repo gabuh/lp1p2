@@ -1,16 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ifsp.edu.lp1p2.controller.MainViewController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ifsp.edu.lp1p2.controller.MainViewController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
-          <Menu mnemonicParsing="false" text="Account">
+          <Menu fx:id="itemMenuAccount" mnemonicParsing="false" text="Account">
             <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
+                  <MenuItem mnemonicParsing="false" text="Profile" />
+                  <MenuItem mnemonicParsing="false" onAction="#onMenuLogoutClick" text="Logout" />
+              <MenuItem mnemonicParsing="false" onAction="#onMenuCloseClick" text="Close" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
@@ -88,8 +108,76 @@
                               </VBox>
                               <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                                  <children>
-                                    <HBox prefHeight="100.0" prefWidth="200.0" />
-                                    <TableView fx:id="tvTecido" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                    <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <Label text="Nome:">
+                                                   <VBox.margin>
+                                                      <Insets top="5.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                                <TextField fx:id="tfTecidoNome" promptText="Nome Tecido">
+                                                   <VBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </VBox.margin>
+                                                </TextField>
+                                                <Label text="Preço:">
+                                                   <VBox.margin>
+                                                      <Insets top="5.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                                <TextField fx:id="tfTecidoPreco" promptText="R$ 00.00">
+                                                   <VBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </VBox.margin>
+                                                </TextField>
+                                                <Label fx:id="lbTecidoWarning" textFill="#fc4444" wrapText="true">
+                                                   <VBox.margin>
+                                                      <Insets left="10.0" top="5.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                                <Button mnemonicParsing="false" onAction="#onAddTecidoClick" text="Add">
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" left="10.0" right="10.0" top="5.0" />
+                                                   </VBox.margin>
+                                                </Button>
+                                             </children>
+                                          </VBox>
+                                          <Separator orientation="VERTICAL" prefHeight="200.0">
+                                             <HBox.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                             </HBox.margin>
+                                          </Separator>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <Label text="Editar Tecido" />
+                                                <Separator orientation="VERTICAL" VBox.vgrow="ALWAYS" />
+                                                <TextField fx:id="tfTecidoUpdateNome" cacheShape="false" centerShape="false" editable="false" focusTraversable="false" opacity="0.5" promptText="Nome" scaleShape="false">
+                                                   <VBox.margin>
+                                                      <Insets left="5.0" right="5.0" top="5.0" />
+                                                   </VBox.margin>
+                                                </TextField>
+                                                <TextField fx:id="tfTecidoUpdatePreco" promptText="R$">
+                                                   <VBox.margin>
+                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                   </VBox.margin>
+                                                   <tooltip>
+                                                      <Tooltip text="Selecione um Tecido na tabela para editar" />
+                                                   </tooltip>
+                                                </TextField>
+                                                <Button alignment="CENTER" contentDisplay="CENTER" layoutX="35.0" layoutY="114.0" mnemonicParsing="false" onAction="#onUpdateTecidoClick" text="Update">
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                   </VBox.margin>
+                                                   <tooltip>
+                                                      <Tooltip text="Selecione um Tecido na tabela para editar" />
+                                                   </tooltip>
+                                                </Button>
+                                             </children>
+                                          </VBox>
+                                       </children></HBox>
+                                    <TableView fx:id="tvTecido" editable="true" onKeyPressed="#onSelectTecidoTable" onMouseClicked="#onSelectTecidoTable" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                                       <columns>
                                         <TableColumn fx:id="tbTecidoNome" prefWidth="75.0" text="Nome" />
                                         <TableColumn fx:id="tbTecidoPreco" prefWidth="75.0" text="Preço" />
