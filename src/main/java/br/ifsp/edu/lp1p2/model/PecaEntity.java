@@ -72,4 +72,11 @@ public class PecaEntity {
     public void setMedidas(List<MedidaEntity> medidas) {
         this.medidas = medidas;
     }
+
+    @Override
+    public String toString() {
+        return  nome;
+    }
 }
+
+
