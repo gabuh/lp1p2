@@ -75,7 +75,7 @@ public class PecaEntity {
 
     @Override
     public String toString() {
-        return  nome;
+        return  nome +" : R$"+precoBase;
     }
 }
 

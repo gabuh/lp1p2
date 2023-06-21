@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "modelo", schema = "lp1p2", catalog = "")
+@Table(name = "modelo", schema = "lp1p2")
 public class ModeloEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -65,5 +65,10 @@ public class ModeloEntity {
 
     public void setPecas(List<PecaEntity> pecas) {
         this.pecas = pecas;
+    }
+
+    @Override
+    public String toString() {
+        return nome +" : "+ multiplicador;
     }
 }

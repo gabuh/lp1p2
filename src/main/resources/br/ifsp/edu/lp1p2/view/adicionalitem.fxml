@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" >
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ifsp.edu.lp1p2.controller.item.AdicionalItemController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
       <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
@@ -24,10 +24,10 @@
          <children>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                <children>
-                  <TableView prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                  <TableView fx:id="tvAdicionais" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                      <columns>
-                        <TableColumn prefWidth="75.0" text="Adicional" />
-                        <TableColumn prefWidth="75.0" text="Aumento" />
+                        <TableColumn fx:id="tbAdicionalNome" prefWidth="75.0" text="Adicional" />
+                        <TableColumn fx:id="tbAdicionalMultiplicador" prefWidth="75.0" text="Aumento" />
                      </columns>
                      <VBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -44,7 +44,7 @@
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Button mnemonicParsing="false" text="Remove" />
+                  <Button mnemonicParsing="false" onMouseClicked="#onRemoveAdicionalClick" text="Remove" />
                </children>
             </VBox>
          </children>
@@ -53,15 +53,15 @@
          <children>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Button mnemonicParsing="false" text="Adicionar" />
+                  <Button mnemonicParsing="false" onMouseClicked="#onAddAdicionalAvailableClick" text="Adicionar" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                <children>
-                  <TableView prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                  <TableView fx:id="tvAdicionaisAvailable" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                      <columns>
-                        <TableColumn prefWidth="75.0" text="Adicional" />
-                        <TableColumn prefWidth="75.0" text="Aumento" />
+                        <TableColumn fx:id="tbAdicionalNomeAvailable" prefWidth="75.0" text="Adicional" />
+                        <TableColumn fx:id="tbAdicionalMultiplicadorAvailable" prefWidth="75.0" text="Aumento" />
                      </columns>
                      <VBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -90,7 +90,7 @@
       </HBox>
       <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.hgrow="NEVER">
          <children>
-            <Button mnemonicParsing="false" text="Concluir">
+            <Button mnemonicParsing="false" onMouseClicked="#onConcluirClick" text="Concluir">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
