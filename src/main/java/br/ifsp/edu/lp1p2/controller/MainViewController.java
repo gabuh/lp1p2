@@ -8,14 +8,12 @@ import br.ifsp.edu.lp1p2.dao.impl.ClienteDaoImpl;
 import br.ifsp.edu.lp1p2.dao.impl.OrcamentoDaoImpl;
 import br.ifsp.edu.lp1p2.dao.impl.TecidoDaoImpl;
 import br.ifsp.edu.lp1p2.dao.impl.UsuarioDaoImpl;
-import br.ifsp.edu.lp1p2.model.ItempedidoEntity;
-import br.ifsp.edu.lp1p2.model.OrcamentoEntity;
-import br.ifsp.edu.lp1p2.model.TecidoEntity;
-import br.ifsp.edu.lp1p2.model.UsuarioEntity;
+import br.ifsp.edu.lp1p2.model.*;
 import br.ifsp.edu.lp1p2.util.Usuarioinfo;
 import br.ifsp.edu.lp1p2.util.Validator;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -56,6 +54,13 @@ public class MainViewController implements Initializable {
         tbTecidoNome.setCellValueFactory( t -> new SimpleStringProperty(t.getValue().getNome()) );
         tbTecidoPreco.setCellValueFactory(t -> new SimpleStringProperty( "R$ "+t.getValue().getPreco().toString()) );
 
+        tbOrcamentoItemPeca.setCellValueFactory(i -> new SimpleStringProperty( i.getValue().getPecaId().getNome() ));
+        tbOrcamentoItemModelo.setCellValueFactory(i -> new SimpleStringProperty( i.getValue().getModeloId().getNome() ));
+        tbOrcamentoItemCor.setCellValueFactory(i -> new SimpleStringProperty( i.getValue().getCor() ));
+        tbOrcamentoItemValor.setCellValueFactory( i-> new SimpleStringProperty( i.getValue().getValorItem().toString() ) );
+        tbOrcamentoItemTamanho.setCellValueFactory( i-> new SimpleStringProperty( i.getValue().getTamanho() ) );
+
+
         tbOrcamentoClienteNome.setCellValueFactory( o -> new SimpleStringProperty( (clienteDao.read(o.getValue().getClienteId())).getNome() ));
         tbOrcamentoPreco.setCellValueFactory( o -> new SimpleStringProperty( "R$ "+o.getValue().getValorTotal().toString() ));
         tbOrcamentoData.setCellValueFactory( o -> new SimpleStringProperty( o.getValue().getDataCriacao().toString()));
@@ -82,6 +87,31 @@ public class MainViewController implements Initializable {
      * ORÇAMENTO TAB - SPACE TO MANAGE THE TAB ORCAMENTO -------------------------------- ORCAMENTO ------------------------------
      */
 
+
+    public ComboBox<ClienteEntity> cbOrcamentoCliente;
+
+    public TextField tfOrcamentoTotal;
+
+    public TextArea taOrcamentoObsevacoes;
+
+    public Button btConcluirOrcamento;
+
+    public void onConcluirOrcamento(){
+
+    }
+
+
+
+
+    private void updateDados(){
+        BigDecimal value = new BigDecimal(0);
+        if (!tvOrcamentoItems.getItems().isEmpty()){
+            for (ItempedidoEntity i:tvOrcamentoItems.getItems()){
+               value = i.getValorItem().add(value);
+            }
+            tfOrcamentoTotal.setText("R$ "+ value);
+        }
+    }
     @FXML
     public Label lbOrcamentoWarning;
     @FXML
@@ -92,14 +122,13 @@ public class MainViewController implements Initializable {
     public TableColumn<OrcamentoEntity, String> tbOrcamentoPreco;
     @FXML
     public TableColumn<OrcamentoEntity, String> tbOrcamentoData;
-    @FXML
-    public Button btAdicionarItens;
-    private ArrayList<OrcamentoEntity> orcamentos;
-    private ArrayList<ItempedidoEntity> itempedidos;
 
-    public void setItempedidos(ArrayList<ItempedidoEntity> itempedidos) {
-        this.itempedidos = itempedidos;
-    }
+    private ArrayList<OrcamentoEntity> orcamentos;
+//    private ArrayList<ItempedidoEntity> itempedidos;
+
+//    public void setItempedidos(ArrayList<ItempedidoEntity> itempedidos) {
+////        this.itempedidos = itempedidos;
+//    }
 
     public void populateTvOrcamento(){
         if(!tvOrcamento.getItems().isEmpty()) tvOrcamento.getItems().clear();
@@ -108,14 +137,42 @@ public class MainViewController implements Initializable {
         }
     }
 
+
+    @FXML
+    public TableView<ItempedidoEntity> tvOrcamentoItems;
+    @FXML
+    public TableColumn<ItempedidoEntity, String> tbOrcamentoItemModelo;
+    @FXML
+    public TableColumn<ItempedidoEntity, String> tbOrcamentoItemTamanho;
+    @FXML
+    public TableColumn<ItempedidoEntity, String> tbOrcamentoItemValor;
+    @FXML
+    public TableColumn<ItempedidoEntity, String> tbOrcamentoItemPeca;
+    @FXML
+    public TableColumn<ItempedidoEntity, String> tbOrcamentoItemCor;
+
+    public void setOrcamentoItems(ObservableList<ItempedidoEntity> items){
+        tvOrcamentoItems.getItems().clear();
+        tvOrcamentoItems.getItems().addAll(items);
+        updateDados();
+    }
+
+    @FXML
+    public Button btAdicionarItens;
     public void onAdicionarItensClick(){
         try{
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/itemocamento.fxml"));
             btAdicionarItens.setDisable(true);
-            Stage stage = new Stage();
-            Scene scene = new Scene(loader.load());
-            stage.setScene(scene);
-            stage.showAndWait();
+            Parent root = loader.load();
+            Stage secundaryStage = new Stage();
+            ItemOrcamentoController itemOrcamentoController = loader.getController();
+            itemOrcamentoController.setStage(secundaryStage);
+            Scene scene = new Scene(root);
+            if (!tvOrcamentoItems.getItems().isEmpty()){ itemOrcamentoController.setTvItems(tvOrcamentoItems.getItems()); }
+            secundaryStage.setOnCloseRequest(t-> this.setOrcamentoItems(itemOrcamentoController.getItems()));
+            secundaryStage.setOnHiding( t -> this.setOrcamentoItems(itemOrcamentoController.getItems()));
+            secundaryStage.setScene(scene);
+            secundaryStage.showAndWait();
             btAdicionarItens.setDisable(false);
         } catch (IOException e){
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();

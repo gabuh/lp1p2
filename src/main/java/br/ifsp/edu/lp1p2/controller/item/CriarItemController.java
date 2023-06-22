@@ -1,16 +1,15 @@
 package br.ifsp.edu.lp1p2.controller.item;
 
 import br.ifsp.edu.lp1p2.Main;
+import br.ifsp.edu.lp1p2.dao.ItempedidoDao;
 import br.ifsp.edu.lp1p2.dao.ModeloDao;
 import br.ifsp.edu.lp1p2.dao.PecaDao;
 import br.ifsp.edu.lp1p2.dao.TecidoDao;
+import br.ifsp.edu.lp1p2.dao.impl.ItempedidoDaoImpl;
 import br.ifsp.edu.lp1p2.dao.impl.ModeloDaoImpl;
 import br.ifsp.edu.lp1p2.dao.impl.PecaDaoImpl;
 import br.ifsp.edu.lp1p2.dao.impl.TecidoDaoImpl;
-import br.ifsp.edu.lp1p2.model.AdicionalEntity;
-import br.ifsp.edu.lp1p2.model.ModeloEntity;
-import br.ifsp.edu.lp1p2.model.PecaEntity;
-import br.ifsp.edu.lp1p2.model.TecidoEntity;
+import br.ifsp.edu.lp1p2.model.*;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
@@ -23,31 +22,87 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.lang.reflect.Constructor;
+import java.math.BigDecimal;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class CriarItemController implements Initializable {
+
+
+    Stage stage;
+
+
 
     private final PecaDao pecaDao;
     private final ModeloDao modeloDao;
     private final TecidoDao tecidoDao;
 
+
+//    private final ItempedidoDao itempedidoDao;
+
     public CriarItemController() {
         pecaDao = new PecaDaoImpl();
         modeloDao = new ModeloDaoImpl();
         tecidoDao = new TecidoDaoImpl();
+//        itempedidoDao = new ItempedidoDaoImpl();
 //        Platform.runLater(() ->{
 //
 //        });
     }
+
+    public Stage getStage() {
+        return stage;
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
     @FXML
     public TextField tfValorTotal;
+
+    private double valorTotal;
+    private boolean allDataFlag = false;
     private void updateDados(){
+        if (selectedPeca != null && selectedModelo != null && selectedTecido != null && !tvAdicionais.getItems().isEmpty()) {
+            double value = selectedPeca.getPrecoBase() + selectedTecido.getPreco().doubleValue();
+            for (AdicionalEntity a : tvAdicionais.getItems()){
+               value += a.getMultiplicador() * selectedPeca.getPrecoBase();
+            }
+            value += selectedModelo.getMultiplicador() * selectedPeca.getPrecoBase();
+            value += selectedTamanho.getV() * selectedPeca.getPrecoBase();
+            valorTotal = value;
+            tfValorTotal.setText(Double.toString(value));
+            allDataFlag = true;
+        }
+        else if (selectedPeca != null) {
+            tfValorTotal.setText(selectedPeca.getPrecoBase().toString());
+            allDataFlag = false;
+        }
 
     }
 
+    private ItempedidoEntity item = null;
+
+    public ItempedidoEntity getItempedido() {
+        return item;
+    }
+
+    public void onConcluirClick(){
+        if (allDataFlag){
+            item = new ItempedidoEntity();
+            item.setAdicionais(tvAdicionais.getItems());
+            item.setCor(cbCores.getSelectionModel().getSelectedItem().toString());
+            item.setTamanho(selectedTamanho.toString());
+            item.setPecaId(selectedPeca);
+            item.setTecidoId(selectedTecido);
+            item.setModeloId(selectedModelo);
+            item.setValorItem(new BigDecimal(valorTotal));
+//            itempedidoDao.create(item);
+            stage.hide();
+            stage.close();
+        }
+    }
 
 
     /**
@@ -58,7 +113,16 @@ public class CriarItemController implements Initializable {
     private void populateCbTamanhos(){
         cbTamanhos.getItems().setAll(Tamanho.values());
         cbTamanhos.getSelectionModel().select(1);
+        onCbTamanhosClick();
     }
+
+    Tamanho selectedTamanho;
+    public void onCbTamanhosClick(){
+        if (!cbTamanhos.getSelectionModel().isEmpty()){
+            selectedTamanho = cbTamanhos.getSelectionModel().getSelectedItem();
+        }
+    }
+
     @FXML
     public ComboBox<Cor> cbCores;
     private void pupulateCbCores(){
@@ -102,6 +166,7 @@ public class CriarItemController implements Initializable {
     public void onCbPecasClick(){
         if (!cbPecas.getSelectionModel().isEmpty()){
             selectedPeca = cbPecas.getSelectionModel().getSelectedItem();
+            updateDados();
         };
     }
 
@@ -136,8 +201,13 @@ public class CriarItemController implements Initializable {
         }
     }
 
-    public void onCbModelosClick(){
+    private ModeloEntity selectedModelo;
 
+    public void onCbModelosClick(){
+        if (!cbModelos.getSelectionModel().isEmpty()){
+            selectedModelo = cbModelos.getSelectionModel().getSelectedItem();
+            updateDados();
+        }
     }
 
 
@@ -159,10 +229,13 @@ public class CriarItemController implements Initializable {
         }
     }
 
-
+    TecidoEntity selectedTecido;
 
     public void onCbTecidosClick(){
-
+        if (!cbTecidos.getSelectionModel().isEmpty()){
+            selectedTecido = cbTecidos.getSelectionModel().getSelectedItem();
+            updateDados();
+        }
     }
 
     public void onCriarTecidoClick(){
@@ -217,6 +290,7 @@ public class CriarItemController implements Initializable {
     protected void setAdicionais(ObservableList<AdicionalEntity> adicionais){
         tvAdicionais.getItems().clear();
         tvAdicionais.getItems().addAll(adicionais);
+        updateDados();
     };
 
 

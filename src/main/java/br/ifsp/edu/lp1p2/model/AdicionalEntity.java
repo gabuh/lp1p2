@@ -46,6 +46,14 @@ public class AdicionalEntity {
         this.multiplicador = multiplicador;
     }
 
+    public ItempedidoEntity getItemPedidoId() {
+        return itemPedidoId;
+    }
+
+    public void setItemPedidoId(ItempedidoEntity itemPedidoId) {
+        this.itemPedidoId = itemPedidoId;
+    }
+
 
     @Override
     public boolean equals(Object o) {

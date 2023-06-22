@@ -1,17 +1,24 @@
 package br.ifsp.edu.lp1p2.controller.item;
 
+import br.ifsp.edu.lp1p2.Main;
+import br.ifsp.edu.lp1p2.controller.CriarAdicionalController;
 import br.ifsp.edu.lp1p2.dao.AdicionalDao;
 import br.ifsp.edu.lp1p2.dao.impl.AdicionalDaoImpl;
 import br.ifsp.edu.lp1p2.model.AdicionalEntity;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -92,7 +99,34 @@ public class AdicionalItemController implements Initializable {
             stage.hide();
             stage.close();
         }catch (Exception e) {
-            new Alert(Alert.AlertType.WARNING, e.getMessage());
+            new Alert(Alert.AlertType.WARNING, e.getMessage()).show();
+        }
+    }
+
+    public void addAdicional(AdicionalEntity adicional){
+        if (adicional!=null)
+            tvAdicionais.getItems().add(adicional);
+    }
+
+    @FXML
+    public Button btCriarAdicional;
+
+    public void onCriarAdicionalClick(){
+        try{
+            btCriarAdicional.setDisable(true);
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/criaradicional.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            CriarAdicionalController criarAdicionalController = loader.getController();
+            criarAdicionalController.setStage(stage);
+            Scene scene = new Scene(root);
+            stage.setOnCloseRequest( t-> addAdicional(criarAdicionalController.getAdicional()));
+            stage.setOnHiding(t-> addAdicional(criarAdicionalController.getAdicional()));
+            stage.setScene(scene);
+            stage.showAndWait();
+            btCriarAdicional.setDisable(false);
+        }catch (IOException e){
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
     }
 

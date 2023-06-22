@@ -22,16 +22,16 @@ public class ItempedidoEntity {
     @Basic
     @Column(name = "valorItem")
     private BigDecimal valorItem;
-    @Basic
-    @Column(name = "peca_id")
-    private Long pecaId;
-    @Basic
-    @Column(name = "modelo_id")
-    private Long modeloId;
-    @Basic
-    @Column(name = "tecido_id")
-    private Long tecidoId;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "peca_id")
+    private PecaEntity pecaId;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "modelo_id")
+    private ModeloEntity modeloId;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "tecido_id")
+    private TecidoEntity tecidoId;
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "orcamento_id")
     private OrcamentoEntity orcamentoId;
 
@@ -70,28 +70,36 @@ public class ItempedidoEntity {
         this.valorItem = valorItem;
     }
 
-    public Long getPecaId() {
+    public PecaEntity getPecaId() {
         return pecaId;
     }
 
-    public void setPecaId(Long pecaId) {
+    public void setPecaId(PecaEntity pecaId) {
         this.pecaId = pecaId;
     }
 
-    public Long getModeloId() {
+    public ModeloEntity getModeloId() {
         return modeloId;
     }
 
-    public void setModeloId(Long modeloId) {
+    public void setModeloId(ModeloEntity modeloId) {
         this.modeloId = modeloId;
     }
 
-    public Long getTecidoId() {
+    public TecidoEntity getTecidoId() {
         return tecidoId;
     }
 
-    public void setTecidoId(Long tecidoId) {
+    public void setTecidoId(TecidoEntity tecidoId) {
         this.tecidoId = tecidoId;
+    }
+
+    public OrcamentoEntity getOrcamentoId() {
+        return orcamentoId;
+    }
+
+    public void setOrcamentoId(OrcamentoEntity orcamentoId) {
+        this.orcamentoId = orcamentoId;
     }
 
     @Override
