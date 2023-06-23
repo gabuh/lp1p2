@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class MedidaDaoImpl implements MedidaDao {
     @Override
     public ArrayList<MedidaEntity> getMedidas() {
-        return (ArrayList<MedidaEntity>) JpaFactoryConnection.getEntityManager().createQuery("SELECT m FROM ModeloEntity AS m ", MedidaEntity.class).getResultList();
+        return (ArrayList<MedidaEntity>) JpaFactoryConnection.getEntityManager().createQuery("SELECT m FROM MedidaEntity AS m ", MedidaEntity.class).getResultList();
     }
 
     @Override

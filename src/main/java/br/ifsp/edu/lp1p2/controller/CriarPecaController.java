@@ -28,11 +28,17 @@ public class CriarPecaController implements Initializable {
         this.stage = stage;
     }
 
+    @FXML
     public TableColumn<MedidaEntity, String> tbMedidaTamanho;
+    @FXML
     public TableColumn<MedidaEntity, String> tbMedidaNome;
+    @FXML
     public TableView<MedidaEntity> tvMedidas;
+    @FXML
     public ComboBox<MedidaEntity> cbMedidas;
+    @FXML
     public TextField tfPrecoBase;
+    @FXML
     public TextField tfNome;
 
     public CriarPecaController() {
@@ -60,14 +66,14 @@ public class CriarPecaController implements Initializable {
             if (cbMedidas.getSelectionModel().isSelected(0)){
                 try {
                     FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/criarmedida.fxml"));
-                    Stage stage = new Stage();
+                    Stage medidaStage = new Stage();
                     Parent root = loader.load();
                     CriarMedidaController criarMedidaController= loader.getController();
-                    stage.setOnHiding(t-> addMedida( criarMedidaController.getMedida()));
-                    criarMedidaController.setStage(stage);
+                    medidaStage.setOnHiding(t-> addMedida( criarMedidaController.getMedida()));
+                    criarMedidaController.setStage(medidaStage);
                     Scene scene = new Scene(root);
-                    stage.setScene(scene);
-                    stage.showAndWait();
+                    medidaStage.setScene(scene);
+                    medidaStage.showAndWait();
                 }catch (IOException e){
                     new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
                 }
@@ -81,16 +87,17 @@ public class CriarPecaController implements Initializable {
     }
 
     private void populateMedidas(){
-        var medida = new MedidaEntity();
+        MedidaEntity medida = new MedidaEntity();
         medida.setNome("Adicionar Medida");
         medida.setTamanho(0.0);
         if (!cbMedidas.getItems().isEmpty()){
             cbMedidas.getItems().clear();
         }
         cbMedidas.getItems().add(medida);
-        for (MedidaEntity m : medidaDao.getMedidas()){
-            cbMedidas.getItems().add(m);
-        }
+        cbMedidas.getItems().addAll(medidaDao.getMedidas());
+//        for (MedidaEntity m : medidaDao.getMedidas()){
+//            cbMedidas.getItems().add(m);
+//        }
     }
 
     private PecaEntity peca = null;

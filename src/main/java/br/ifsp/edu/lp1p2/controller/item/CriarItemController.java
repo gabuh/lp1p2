@@ -1,6 +1,7 @@
 package br.ifsp.edu.lp1p2.controller.item;
 
 import br.ifsp.edu.lp1p2.Main;
+import br.ifsp.edu.lp1p2.controller.CriarModeloController;
 import br.ifsp.edu.lp1p2.controller.CriarPecaController;
 import br.ifsp.edu.lp1p2.controller.CriarTecidoController;
 import br.ifsp.edu.lp1p2.dao.ItempedidoDao;
@@ -31,7 +32,7 @@ import java.util.ResourceBundle;
 public class CriarItemController implements Initializable {
 
 
-    Stage stage;
+    private Stage stage;
 
 
 
@@ -140,22 +141,18 @@ public class CriarItemController implements Initializable {
 
     @FXML
     public Button btCriarPeca;
-    public void onCriarPecaClick(){
-        try{
+    public void onCriarPecaClick() throws IOException {
             btCriarPeca.setDisable(true);
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/criarpeca.fxml"));
-            Stage stage = new Stage();
+            Stage pecaStage = new Stage();
             Parent root = loader.load();
             CriarPecaController criarPecaController = loader.getController();
-            stage.setOnHiding(t-> addPeca(criarPecaController.getPeca() ));
-            criarPecaController.setStage(stage);
+            criarPecaController.setStage(pecaStage);
+            pecaStage.setOnHiding(t-> addPeca(criarPecaController.getPeca() ));
             Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.showAndWait();
+            pecaStage.setScene(scene);
+            pecaStage.showAndWait();
             btCriarPeca.setDisable(false);
-        }catch (IOException e){
-            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
-        }
     }
 
     @FXML
@@ -191,7 +188,9 @@ public class CriarItemController implements Initializable {
     @FXML
     public Button btCriarModelo;
 
-    @FXML ComboBox<ModeloEntity> cbModelos;
+    @FXML
+    ComboBox<ModeloEntity> cbModelos;
+
     public void populateModelos(){
         if (cbModelos.getItems().isEmpty()){
             cbModelos.getItems().addAll(modeloDao.getModelos());
@@ -203,11 +202,15 @@ public class CriarItemController implements Initializable {
 
     public void onCriarModeloClick(){
         try{
-            if (!pecaDao.getPecas().isEmpty()){
+            if (pecaDao.getPecas() != null){
                 btCriarModelo.setDisable(true);
                 FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/criarmodelo.fxml"));
                 Stage stage = new Stage();
-                Scene scene = new Scene(loader.load());
+                Parent root = loader.load();
+                CriarModeloController criarModeloController = loader.getController();
+                stage.setOnHiding(t -> addModelo( criarModeloController.getModelo() ) );
+                criarModeloController.setStage(stage);
+                Scene scene = new Scene(root);
                 stage.setScene(scene);
                 stage.showAndWait();
                 btCriarModelo.setDisable(false);
@@ -228,7 +231,13 @@ public class CriarItemController implements Initializable {
         }
     }
 
-
+    public void addModelo(ModeloEntity modelo){
+        if (modelo!=null){
+            modeloDao.create(modelo);
+            cbModelos.getItems().add(modelo);
+            cbModelos.getSelectionModel().select(modelo);
+        }
+    }
 
 //------------------------------------- TECIDO ---------------------------------------- TECIDO
 

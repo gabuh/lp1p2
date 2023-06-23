@@ -1,4 +1,4 @@
-module br.ifsp.edu.lp1p2 {
+module br.ifsp.edu.lp1p {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.graphics;
@@ -12,7 +12,7 @@ module br.ifsp.edu.lp1p2 {
     exports br.ifsp.edu.lp1p2.model;
     exports br.ifsp.edu.lp1p2.controller.item;
     exports br.ifsp.edu.lp1p2.controller.pedido;
-    opens br.ifsp.edu.lp1p2.model to org.hibernate.orm.core;
+    opens br.ifsp.edu.lp1p2.model to javafx.fxml,org.hibernate.orm.core;
     opens br.ifsp.edu.lp1p2.controller to javafx.fxml, org.hibernate.orm.core;
     opens br.ifsp.edu.lp1p2.controller.item to javafx.fxml, org.hibernate.orm.core;
     opens br.ifsp.edu.lp1p2.controller.pedido to javafx.fxml, org.hibernate.orm.core;

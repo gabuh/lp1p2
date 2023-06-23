@@ -6,4 +6,7 @@ import java.util.ArrayList;
 
 public interface ModeloDao {
     ArrayList<ModeloEntity> getModelos();
+
+    void create(ModeloEntity modelo);
+
 }

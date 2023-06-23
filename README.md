@@ -411,7 +411,7 @@ Orcamento |o--o| Pedido : has
 
 - [ ] Cadastrar cliente (durante o cadastro do usuário é possível adicionar medidas ao cliente) 
 
-- [ ] Editar cliente (também é possível adicionar, editar e remover uma medida do cliente). 
+- [x] Editar cliente (também é possível adicionar, editar e remover uma medida do cliente). 
 
 - [ ] Excluir cliente (remove todas as informações pessoais, mas mantém os pedidos e orçamentos como cliente desconhecido). 
 
@@ -421,9 +421,9 @@ Orcamento |o--o| Pedido : has
 
 - [x] Adicionar adicional. 
 
-- [ ] Editar tecido (altera o multiplicador). 
+- [x] Editar tecido (altera o multiplicador). 
 
-- [ ] Adicionar modelo. 
+- [x] Adicionar modelo. 
 
 - [ ] Editar modelo (altera o multiplicado e pode adicionar ou remover peças da lista)
 

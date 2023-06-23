@@ -10,5 +10,7 @@ public interface ClienteDao {
 
     ArrayList<ClienteEntity> getClients();
     void update(ClienteEntity cliente);
+
+    boolean verifyEmail(String email);
     void delete(long id);
 }
