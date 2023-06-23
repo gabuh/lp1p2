@@ -63,7 +63,7 @@ public class MainViewController implements Initializable {
         tbOrcamentoItemPeca.setCellValueFactory(i -> new SimpleStringProperty( i.getValue().getPecaId().getNome() ));
         tbOrcamentoItemModelo.setCellValueFactory(i -> new SimpleStringProperty( i.getValue().getModeloId().getNome() ));
         tbOrcamentoItemCor.setCellValueFactory(i -> new SimpleStringProperty( i.getValue().getCor() ));
-        tbOrcamentoItemValor.setCellValueFactory( i-> new SimpleStringProperty( i.getValue().getValorItem().toString() ) );
+        tbOrcamentoItemValor.setCellValueFactory( i-> new SimpleStringProperty( "R$ "+i.getValue().getValorItem().toString() ) );
         tbOrcamentoItemTamanho.setCellValueFactory( i-> new SimpleStringProperty( i.getValue().getTamanho() ) );
 
 
@@ -165,7 +165,7 @@ public class MainViewController implements Initializable {
             pedido.setOrcamentoId(orcamento);
             orcamentoDao.create(orcamento);
             pedidoDao.create(pedido);
-            new Alert(Alert.AlertType.INFORMATION,"FOI ORCAMENTO E PEDIDO CRIADO COM SUCESSO").show();
+            new Alert(Alert.AlertType.INFORMATION,"ORCAMENTO E PEDIDO FOI CRIADO COM SUCESSO").show();
         }
     }
 

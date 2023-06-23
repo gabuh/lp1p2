@@ -19,5 +19,12 @@ C:/Users/Gabriel/IdeaProjects/lp1p2/src/main/resources/META-INF/persistence.xml<
       <jdbc-url>jdbc:mysql://localhost:3306/lp1p2</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="projeto2lp@localhost" uuid="132af565-e9a8-4624-84f5-ed2ef1057919">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/projeto2lp</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

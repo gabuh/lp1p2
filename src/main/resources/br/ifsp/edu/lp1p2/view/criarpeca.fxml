@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/20.0.1">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ifsp.edu.lp1p2.controller.CriarPecaController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -26,31 +26,43 @@
    <children>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS">
          <children>
-            <Label text="Nome:" />
-            <TextField maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" promptText="NOME DA PECA" VBox.vgrow="NEVER">
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label text="Nome:" />
+                        <TextField fx:id="tfNome" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" promptText="NOME DA PECA" VBox.vgrow="NEVER">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </TextField>
+                        <Label text="Preco Base:" />
+                        <TextField fx:id="tfPrecoBase" maxWidth="-Infinity" minWidth="-Infinity" promptText="R$ 00.00" VBox.vgrow="NEVER" />
+                        <Label text="Medidas:" />
+                     </children>
+                  </VBox>
+               </children>
                <VBox.margin>
-                  <Insets />
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
-            </TextField>
-            <Label text="Preco Base:" />
-            <TextField maxWidth="-Infinity" minWidth="-Infinity" promptText="R$ 00.00" VBox.vgrow="NEVER" />
-            <Label text="Medidas:" />
+            </HBox>
             <HBox alignment="CENTER" VBox.vgrow="NEVER">
                <children>
-                  <ComboBox minWidth="-Infinity" prefWidth="150.0" />
+                  <ComboBox fx:id="cbMedidas" minWidth="-Infinity" onHiding="#onSelectingMedida" prefWidth="150.0" />
                   <Separator opacity="0.0" prefWidth="200.0" />
-                  <Button minWidth="-Infinity" mnemonicParsing="false" text="Adicionar" />
+                  <Button minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#onAdicionarClick" text="Adicionar" />
                   <Separator opacity="0.0" prefWidth="200.0" />
-                  <Button minWidth="-Infinity" mnemonicParsing="false" text="Remover" HBox.hgrow="ALWAYS" />
+                  <Button minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#onRemoveclick" text="Remover" HBox.hgrow="ALWAYS" />
                </children>
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" />
                </VBox.margin>
             </HBox>
-            <TableView prefHeight="200.0" prefWidth="200.0">
+            <Label fx:id="lbWarning" textFill="#c32828" />
+            <TableView fx:id="tvMedidas" prefHeight="200.0" prefWidth="200.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="Nome" />
-                <TableColumn prefWidth="75.0" text="Tamanho" />
+                <TableColumn fx:id="tbMedidaNome" prefWidth="75.0" text="Nome" />
+                <TableColumn fx:id="tbMedidaTamanho" prefWidth="75.0" text="Tamanho" />
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -59,8 +71,11 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" />
                </VBox.margin>
             </TableView>
-            <Button mnemonicParsing="false" text="Concluir" />
+            <Button mnemonicParsing="false" onMouseClicked="#onConcluirClick" text="Concluir" />
          </children>
+         <GridPane.margin>
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+         </GridPane.margin>
       </VBox>
    </children>
 </GridPane>

@@ -136,13 +136,13 @@ public class ItemOrcamentoController implements Initializable {
         tbItemCor.setCellValueFactory(i -> new SimpleStringProperty( i.getValue().getCor() ));
         tbItemPeca.setCellValueFactory(i -> new SimpleStringProperty( i.getValue().getPecaId().getNome() ));
         tbItemModelo.setCellValueFactory(i -> new SimpleStringProperty( i.getValue().getModeloId().getNome() ));
-        tbItemValor.setCellValueFactory( i-> new SimpleStringProperty( i.getValue().getValorItem().toString() ) );
+        tbItemValor.setCellValueFactory( i-> new SimpleStringProperty( "R$ " + i.getValue().getValorItem().toString() ) );
         tbItemTamanho.setCellValueFactory( i-> new SimpleStringProperty( i.getValue().getTamanho() ) );
 
         tbItemAvailablePeca.setCellValueFactory(i -> new SimpleStringProperty( i.getValue().getPecaId().getNome() ));
         tbItemAvailableCor.setCellValueFactory(i -> new SimpleStringProperty( i.getValue().getCor() ));
         tbItemAvailableModelo.setCellValueFactory(i -> new SimpleStringProperty( i.getValue().getModeloId().getNome() ));
-        tbItemAvailableValor.setCellValueFactory( i-> new SimpleStringProperty( i.getValue().getValorItem().toString() ) );
+        tbItemAvailableValor.setCellValueFactory( i-> new SimpleStringProperty( "R$" + i.getValue().getValorItem().toString() ) );
         tbItemAvailableTamanho.setCellValueFactory( i-> new SimpleStringProperty( i.getValue().getTamanho() ) );
         populateItemsAvailable();
     }

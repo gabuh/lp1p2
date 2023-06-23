@@ -23,6 +23,22 @@ public class MedidaEntity {
     @JoinColumn(name = "peca_id")
     private PecaEntity pecaId;
 
+    public PecaEntity getPecaId() {
+        return pecaId;
+    }
+
+    public void setPecaId(PecaEntity pecaId) {
+        this.pecaId = pecaId;
+    }
+
+    public ClienteEntity getClienteId() {
+        return clienteId;
+    }
+
+    public void setClienteId(ClienteEntity clienteId) {
+        this.clienteId = clienteId;
+    }
+
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private ClienteEntity clienteId;
@@ -58,6 +74,11 @@ public class MedidaEntity {
         if (o == null || getClass() != o.getClass()) return false;
         MedidaEntity that = (MedidaEntity) o;
         return id == that.id && Objects.equals(nome, that.nome) && Objects.equals(tamanho, that.tamanho) && Objects.equals(pecaId, that.pecaId) && Objects.equals(clienteId, that.clienteId);
+    }
+
+    @Override
+    public String toString() {
+        return nome +" : " + tamanho;
     }
 
     @Override

@@ -1,6 +1,8 @@
 package br.ifsp.edu.lp1p2.controller.item;
 
 import br.ifsp.edu.lp1p2.Main;
+import br.ifsp.edu.lp1p2.controller.CriarPecaController;
+import br.ifsp.edu.lp1p2.controller.CriarTecidoController;
 import br.ifsp.edu.lp1p2.dao.ItempedidoDao;
 import br.ifsp.edu.lp1p2.dao.ModeloDao;
 import br.ifsp.edu.lp1p2.dao.PecaDao;
@@ -143,7 +145,11 @@ public class CriarItemController implements Initializable {
             btCriarPeca.setDisable(true);
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/criarpeca.fxml"));
             Stage stage = new Stage();
-            Scene scene = new Scene(loader.load());
+            Parent root = loader.load();
+            CriarPecaController criarPecaController = loader.getController();
+            stage.setOnHiding(t-> addPeca(criarPecaController.getPeca() ));
+            criarPecaController.setStage(stage);
+            Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.showAndWait();
             btCriarPeca.setDisable(false);
@@ -162,12 +168,20 @@ public class CriarItemController implements Initializable {
             cbPecas.getItems().addAll( pecaDao.getPecas() );
         }
     }
+    public void addPeca(PecaEntity peca){
+        if (peca!=null){
+            pecaDao.create(peca);
+            cbPecas.getItems().add(peca);
+            cbPecas.getSelectionModel().select(peca);
+        }
+    }
+
     private PecaEntity selectedPeca;
     public void onCbPecasClick(){
         if (!cbPecas.getSelectionModel().isEmpty()){
             selectedPeca = cbPecas.getSelectionModel().getSelectedItem();
             updateDados();
-        };
+        }
     }
 
 
@@ -189,13 +203,17 @@ public class CriarItemController implements Initializable {
 
     public void onCriarModeloClick(){
         try{
-            btCriarModelo.setDisable(true);
-            FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/criarmodelo.fxml"));
-            Stage stage = new Stage();
-            Scene scene = new Scene(loader.load());
-            stage.setScene(scene);
-            stage.showAndWait();
-            btCriarModelo.setDisable(false);
+            if (!pecaDao.getPecas().isEmpty()){
+                btCriarModelo.setDisable(true);
+                FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/criarmodelo.fxml"));
+                Stage stage = new Stage();
+                Scene scene = new Scene(loader.load());
+                stage.setScene(scene);
+                stage.showAndWait();
+                btCriarModelo.setDisable(false);
+            }else{
+                new Alert(Alert.AlertType.INFORMATION,"Crie pelo ao menos uma peca antes de criar Modelos").show();
+            }
         }catch (IOException e){
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
@@ -243,10 +261,14 @@ public class CriarItemController implements Initializable {
             btCriarTecido.setDisable(true);
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/criartecido.fxml"));
             Stage stage = new Stage();
-            Scene scene = new Scene(loader.load());
+            Parent root = loader.load();
+            CriarTecidoController tecidoController = loader.getController();
+            tecidoController.setStage(stage);
+            Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.showAndWait();
             btCriarTecido.setDisable(false);
+            populateTecidos();
         }catch (IOException e){
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }

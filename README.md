@@ -339,7 +339,7 @@ Orcamento |o--o| Pedido : has
 
     - [x] O orçamento tem um usuário e um cliente vinculados e uma lista com todos os itens do pedido. 
 
-    - [ ] O valorTotal é calculado automaticamente baseados no valor de cada item do pedido.
+    - [x] O valorTotal é calculado automaticamente baseados no valor de cada item do pedido.
 
  
 
@@ -347,57 +347,57 @@ Orcamento |o--o| Pedido : has
 
     - [x] A classe Pedido herda de Orcamento e armazena todas as informações de um pedido do ateliê. 
 
-    - [ ] Os atributos obrigatórios de um pedido além dos atributos do orçamento é a dataEntrega e a situação. 
+    - [x] Os atributos obrigatórios de um pedido além dos atributos do orçamento é a dataEntrega e a situação. 
 
 
 
 - ItemPedido 
 
-    - [ ] A classe ItemPedido armazena um item que será utilizado em um orçamento ou em um pedido. 
+    - [x] A classe ItemPedido armazena um item que será utilizado em um orçamento ou em um pedido. 
 
-    - [ ] O valorItem é calculado automaticamente usando o precoBase da peça + preco do tecido + (os multiplicadores dos adicionais * o pecoBase da peça) + (o multiplicador do modelo * o precoBase da peça) + (o multiplicador do tamanho * o precoBase da peça). 
+    - [x] O valorItem é calculado automaticamente usando o precoBase da peça + preco do tecido + (os multiplicadores dos adicionais * o pecoBase da peça) + (o multiplicador do modelo * o precoBase da peça) + (o multiplicador do tamanho * o precoBase da peça). 
 
 
 
 - Tecido 
 
-    - [ ] A classe Tecido armazena o tecido e seu preço por metro. 
+    - [x] A classe Tecido armazena o tecido e seu preço por metro. 
 
 
 
 - Adicional 
 
-    - [ ] A classe Adicional armazena o adicional e seu multiplicado < 1.
+    - [x] A classe Adicional armazena o adicional e seu multiplicado < 1.
 
 
 
 - Modelo 
 
-    - [ ] A classe Modelo armazena um modelo e seu multiplicado < 1. 
+    - [x] A classe Modelo armazena um modelo e seu multiplicado < 1. 
 
-    - [ ] Também apresenta a lista de peças que podem utilizar aquele modelo. 
+    - [x] Também apresenta a lista de peças que podem utilizar aquele modelo. 
 
 
 
 - Peca 
 
-    - [ ] A classe Peca armazena o nome e precoBase de uma peça. 
+    - [x] A classe Peca armazena o nome e precoBase de uma peça. 
 
-    - [ ] Também armazena uma lista com medidas específicas para a peça (ex. comprimento da calça) 
+    - [x] Também armazena uma lista com medidas específicas para a peça (ex. comprimento da calça) 
 
 
 
 - Medida 
 
-    - [ ] A classe Medida armazena uma medida em centímetros. 
+    - [x] A classe Medida armazena uma medida em centímetros. 
 
 
 
 - Cliente 
 
-    - [ ] A classe Cliente armazena todas as informações pessoais de um cliente do ateliê. 
+    - [x] A classe Cliente armazena todas as informações pessoais de um cliente do ateliê. 
 
-    - [ ] Também armazena uma lista de medidas base do cliente (ex. tamanho do busto) 
+    - [x] Também armazena uma lista de medidas base do cliente (ex. tamanho do busto) 
 
 
 
@@ -415,11 +415,11 @@ Orcamento |o--o| Pedido : has
 
 - [ ] Excluir cliente (remove todas as informações pessoais, mas mantém os pedidos e orçamentos como cliente desconhecido). 
 
-- [ ] Adicionar tecido. 
+- [x] Adicionar tecido. 
 
-- [ ] Editar tecido (altera preço). 
+- [x] Editar tecido (altera preço). 
 
-- [ ] Adicionar adicional. 
+- [x] Adicionar adicional. 
 
 - [ ] Editar tecido (altera o multiplicador). 
 
@@ -427,35 +427,35 @@ Orcamento |o--o| Pedido : has
 
 - [ ] Editar modelo (altera o multiplicado e pode adicionar ou remover peças da lista)
 
-- [ ] Adicionar peça. 
+- [x] Adicionar peça. 
 
 - [ ] Editar peça (altera o peço base e pode adicionar ou remover medidas da lista) 
 
-- [ ] Criar orçamento (ao adicionar um orçamento é possível criar um cliente e criar itens do pedido para vincular ou orçamento) 
+- [x] Criar orçamento (ao adicionar um orçamento é possível criar um cliente e criar itens do pedido para vincular ou orçamento) 
 
 - [ ] Atualizar orçamento. 
 
 - [ ] Excluir orçamento. 
 
-- [ ] Criar pedido (ao adicionar um orçamento é possível criar um cliente e criar itens do pedido para vincular ou orçamento) 
+- [x] Criar pedido (ao adicionar um orçamento é possível criar um cliente e criar itens do pedido para vincular ou orçamento) 
 
 - [ ] Atualizar pedido (não é possível com pedidos "concluído") 
 
-- [ ] Criar item do pedido (só é possível criar durante a criação de orçamento ou de pedido, é possível adicionar um peça, modelo, adicional ou tecido durante a criação do item) 
+- [x] Criar item do pedido (só é possível criar durante a criação de orçamento ou de pedido, é possível adicionar um peça, modelo, adicional ou tecido durante a criação do item) 
 
 - [ ] Listar pedidos (criar filtros) 
 
-- [ ] Listar orçamentos. 
+- [x] Listar orçamentos. 
 
-- [ ] Listar clientes. 
+- [x] Listar clientes. 
 
-- [ ] Listar tecidos.
+- [x] Listar tecidos.
 
-- [ ] Listar adicionais. 
+- [x] Listar adicionais. 
 
-- [ ] Listar peças. 
+- [x] Listar peças. 
 
-- [ ] Listar modelos. 
+- [x] Listar modelos. 
 
 - [ ] Relatório do pedido (gerar um arquivo com os dados do pedido
 
@@ -465,67 +465,67 @@ Orcamento |o--o| Pedido : has
 
 - tipoPagamento (Pedido) 
 
-    - [ ] débito 
+    - [x] débito 
 
-    - [ ] crédito 
+    - [x] crédito 
 
-    - [ ] dinheiro 
+    - [x] dinheiro 
 
-    - [ ] pix 
+    - [x] pix 
 
 
 
 - situacao (Pedido) 
 
-    - [ ] criado 
+    - [x] criado 
 
-    - [ ] em produção 
+    - [x] em produção 
 
-    - [ ] pago 
+    - [x] pago 
 
-    - [ ] entregue 
+    - [x] entregue 
 
-    - [ ] em ajuste 
+    - [x] em ajuste 
 
-    - [ ] finalizado 
+    - [x] finalizado 
 
 
 
 - tamanho(ItemPedido) 
 
-    - [ ] pp (multiplicador = 0,00) 
+    - [x] pp (multiplicador = 0,00) 
 
-    - [ ] p (multiplicador = 0,02) 
+    - [x] p (multiplicador = 0,02) 
 
-    - [ ] m (multiplicador = 0,04) 
+    - [x] m (multiplicador = 0,04) 
 
-    - [ ] g (multiplicador = 0,06) 
+    - [x] g (multiplicador = 0,06) 
 
-    - [ ] gg (multiplicador = 0,08) 
+    - [x] gg (multiplicador = 0,08) 
 
-    - [ ] exgg (multiplicador = 0,1) 
+    - [x] exgg (multiplicador = 0,1) 
 
 
 
 - cor (ItemPedido) 
 
-    - [ ] Azul 
+    - [x] Azul 
 
-    - [ ] Amarelo 
+    - [x] Amarelo 
 
-    - [ ] Verde 
+    - [x] Verde 
 
-    - [ ] Vermelho 
+    - [x] Vermelho 
 
-    - [ ] Preto 
+    - [x] Preto 
 
-    - [ ] Roxo 
+    - [x] Roxo 
 
-    - [ ] Laranja 
+    - [x] Laranja 
 
-    - [ ] Branco 
+    - [x] Branco 
 
-    - [ ] Marron
+    - [x] Marron
 
 
 

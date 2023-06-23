@@ -16,10 +16,12 @@
     <class>br.ifsp.edu.lp1p2.model.TecidoEntity</class>
     <class>br.ifsp.edu.lp1p2.model.UsuarioEntity</class>
     <properties>
-      <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/lp1p2"/>
+      <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/projeto2lp"/>
       <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
       <property name="show_sql" value="true"/>
       <property name="hibernate.connection.username" value="newone"/>
+<!--      <property name="hibernate.hbm2ddl.auto" value="create"/>-->
+
     </properties>
   </persistence-unit>
 </persistence>

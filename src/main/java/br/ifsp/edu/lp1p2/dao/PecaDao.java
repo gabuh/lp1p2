@@ -9,4 +9,5 @@ public interface PecaDao {
     ArrayList<PecaEntity> getPecas();
 
 
+    void create(PecaEntity peca);
 }
