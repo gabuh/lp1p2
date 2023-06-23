@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ifsp.edu.lp1p2.controller.pedido.CriarPedidoController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <VBox prefHeight="200.0" prefWidth="100.0" GridPane.hgrow="ALWAYS" />
+      <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" />
+      <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS">
+         <children>
+            <Label text="Data Entrega" />
+            <DatePicker fx:id="dpDataEntrega" editable="false" />
+            <Label text="Tipo Pagamento" />
+            <ComboBox fx:id="cbTipoPagamento" prefWidth="150.0" />
+            <Label text="Situação" />
+            <ComboBox fx:id="cbSituacao" prefWidth="150.0" />
+            <Label text="Pagando agora ou posteriormente?" />
+            <HBox spacing="20.0">
+               <children>
+                  <CheckBox fx:id="checkAgora" mnemonicParsing="false" onMouseClicked="#onCheckAgoraClick" text="Agora" />
+                  <CheckBox fx:id="checkPosteriormente" mnemonicParsing="false" onMouseClicked="#onCheckPosteriormenteClick" text="Posteriormente" />
+               </children>
+            </HBox>
+            <Button fx:id="btConcluir" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#onConcluirClick" text="Concluir" VBox.vgrow="ALWAYS">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+   </children>
+</GridPane>
