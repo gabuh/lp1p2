@@ -11,7 +11,6 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
@@ -125,7 +124,7 @@ public class MainViewController {
             new Alert(Alert.AlertType.ERROR,e.toString()).show();
             System.exit(666);
         }
-    };
+    }
 
     public void onMenuCloseClick() {
         System.exit(0);
