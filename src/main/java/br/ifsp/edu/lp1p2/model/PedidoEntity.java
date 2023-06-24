@@ -27,9 +27,9 @@ public class PedidoEntity {
     @Basic
     @Column(name = "situacao")
     private String situacao;
-    @Basic
-    @Column(name = "orcamento_id")
-    private Long orcamentoId;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "orcamento_id")
+    private OrcamentoEntity orcamentoId;
 
     public long getId() {
         return id;
@@ -79,11 +79,11 @@ public class PedidoEntity {
         this.situacao = situacao;
     }
 
-    public Long getOrcamentoId() {
+    public OrcamentoEntity getOrcamentoId() {
         return orcamentoId;
     }
 
-    public void setOrcamentoId(Long orcamentoId) {
+    public void setOrcamentoId(OrcamentoEntity orcamentoId) {
         this.orcamentoId = orcamentoId;
     }
 

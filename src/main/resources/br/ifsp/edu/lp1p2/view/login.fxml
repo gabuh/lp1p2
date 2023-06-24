@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.shape.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ifsp.edu.lp1p2.controller.LoginController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ifsp.edu.lp1p2.controller.LoginController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -15,18 +24,29 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <VBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+      <VBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS">
          <children>
-            <Label text="Email" />
-            <TextField fx:id="tfEmail" accessibleText="Email field" promptText="Email@address.com" />
-            <Label contentDisplay="CENTER" text="Password" />
-            <PasswordField fx:id="tfPassword" promptText="*****************" />
+            <HBox maxWidth="250.0">
+               <children>
+                  <Label text="Email" />
+               </children>
+            </HBox>
+            <TextField fx:id="tfEmail" accessibleText="Email field" maxWidth="250.0" promptText="Email@address.com">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin></TextField>
+            <HBox maxWidth="250.0">
+               <children>
+                  <Label contentDisplay="CENTER" text="Password" />
+               </children>
+            </HBox>
+            <PasswordField fx:id="tfPassword" maxWidth="250.0" promptText="*****************" />
             <Label fx:id="lbWaning" alignment="CENTER" textFill="#e11a1a" wrapText="true" />
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onLoginButtonClick" text="Login" />
-            <HBox alignment="TOP_CENTER" prefHeight="21.0" prefWidth="220.0">
+            <Button maxWidth="-Infinity" mnemonicParsing="false" onAction="#onLoginButtonClick" prefHeight="26.0" prefWidth="250.0" text="Login" />
+            <HBox alignment="CENTER" prefHeight="21.0" prefWidth="250.0">
                <children>
                   <Hyperlink text="Support US" />
-                  <Separator maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" opacity="0.0" HBox.hgrow="ALWAYS" />
+                  <Separator maxHeight="1.7976931348623157E308" maxWidth="-Infinity" opacity="0.0" prefWidth="94.0" HBox.hgrow="ALWAYS" />
                   <Hyperlink alignment="CENTER_RIGHT" contentDisplay="RIGHT" onAction="#onCreateAccountClick" text="Create Account" />
                </children>
             </HBox>
@@ -35,29 +55,16 @@
             <Insets />
          </opaqueInsets>
          <GridPane.margin>
-            <Insets right="80.0" />
+            <Insets />
          </GridPane.margin>
       </VBox>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.hgrow="ALWAYS">
          <children>
-            <Arc length="270.0" radiusX="100.0" radiusY="100.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND">
-               <fill>
-                  <LinearGradient endX="1.0" endY="1.0">
-                     <stops>
-                        <Stop>
-                           <color>
-                              <Color />
-                           </color>
-                        </Stop>
-                        <Stop offset="1.0">
-                           <color>
-                              <Color red="1.0" green="1.0" blue="1.0" />
-                           </color>
-                        </Stop>
-                     </stops>
-                  </LinearGradient>
-               </fill>
-            </Arc>
+            <ImageView fitHeight="300.0" fitWidth="350.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/ifsp_logo.png" />
+               </image>
+            </ImageView>
          </children>
       </VBox>
    </children>

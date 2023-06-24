@@ -16,7 +16,6 @@ public class UsuarioDaoImpl implements UsuarioDao {
         Query query = JpaFactoryConnection.getEntityManager().createNamedQuery("selectByEmail", UsuarioEntity.class);
         List<UsuarioEntity> result = query.setParameter(1,email).getResultList();
         if(!result.isEmpty()){
-            result.get(0).setSenhaUsuario("-");
             return result.get(0);
         }
      return null;

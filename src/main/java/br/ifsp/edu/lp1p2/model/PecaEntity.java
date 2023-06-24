@@ -20,9 +20,17 @@ public class PecaEntity {
     private Double precoBase;
 
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "modelo_id")
     private ModeloEntity modeloId;
+
+    public ModeloEntity getModeloId() {
+        return modeloId;
+    }
+
+    public void setModeloId(ModeloEntity modeloId) {
+        this.modeloId = modeloId;
+    }
 
     @OneToMany(mappedBy = "pecaId", cascade = CascadeType.ALL)
     private List<MedidaEntity> medidas;
@@ -72,4 +80,11 @@ public class PecaEntity {
     public void setMedidas(List<MedidaEntity> medidas) {
         this.medidas = medidas;
     }
+
+    @Override
+    public String toString() {
+        return  nome +" : R$"+precoBase;
+    }
 }
+
+

@@ -30,7 +30,13 @@ public class Validator {
         return null;
     }
 
-    
-    
+
+    public static String telefoneValidator(String telefone){
+        if (telefone.length() != 11) {
+            return "Lembre-se; Telefone com onze numeros ex: 11987654321";
+        }
+        return null;
+    }
+
     
 }

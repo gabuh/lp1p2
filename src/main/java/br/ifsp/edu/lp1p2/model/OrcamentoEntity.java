@@ -23,12 +23,12 @@ public class OrcamentoEntity {
     @Basic
     @Column(name = "observacoes")
     private String observacoes;
-    @Basic
-    @Column(name = "usuario_id")
-    private Long usuarioId;
-    @Basic
-    @Column(name = "cliente_id")
-    private Long clienteId;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "usuario_id")
+    private UsuarioEntity usuarioId;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cliente_id")
+    private ClienteEntity clienteId;
 
     @OneToMany(mappedBy = "orcamentoId", cascade = CascadeType.ALL)
     private List<ItempedidoEntity> itensPedidos;
@@ -65,19 +65,19 @@ public class OrcamentoEntity {
         this.observacoes = observacoes;
     }
 
-    public Long getUsuarioId() {
+    public UsuarioEntity getUsuarioId() {
         return usuarioId;
     }
 
-    public void setUsuarioId(Long usuarioId) {
+    public void setUsuarioId(UsuarioEntity usuarioId) {
         this.usuarioId = usuarioId;
     }
 
-    public Long getClienteId() {
+    public ClienteEntity getClienteId() {
         return clienteId;
     }
 
-    public void setClienteId(Long clienteId) {
+    public void setClienteId(ClienteEntity clienteId) {
         this.clienteId = clienteId;
     }
 

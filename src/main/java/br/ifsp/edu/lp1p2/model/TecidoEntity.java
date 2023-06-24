@@ -56,4 +56,9 @@ public class TecidoEntity {
     public int hashCode() {
         return Objects.hash(id, nome, preco);
     }
+
+    @Override
+    public String toString() {
+        return nome +" : R$"+ preco;
+    }
 }
