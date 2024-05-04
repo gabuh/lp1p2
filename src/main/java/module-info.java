@@ -1,4 +1,4 @@
-module br.ifsp.edu.lp1p {
+module br.ifsp.edu.lp1p2 {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.graphics;

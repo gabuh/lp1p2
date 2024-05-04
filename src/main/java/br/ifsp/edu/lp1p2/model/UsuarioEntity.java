@@ -6,7 +6,7 @@ import java.util.Objects;
 
 @Entity
 @NamedNativeQuery(name="selectByEmail", query="SELECT u.* FROM usuario AS u WHERE u.emailUsuario LIKE ?", resultClass=UsuarioEntity.class)
-@Table(name = "usuario", schema = "lp1p2")
+@Table(name = "usuario")
 public class UsuarioEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
